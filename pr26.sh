@@ -83,7 +83,7 @@ class UserController extends Controller
             // Tampilkan pesan error yang jelas
             throw new DisplayException(
                 "🚫 ᴀᴋꜱᴇꜱ ᴅɪᴛᴏʟᴀᴋ: ʜᴀɴʏᴀ ᴀᴅᴍɪɴ ɪᴅ 1 ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇɴɢʜᴀᴘᴜꜱ ᴀᴛᴀᴜ ᴍᴇɴɢᴇᴅɪᴛ ᴜꜱᴇʀ! \n\n" .
-                "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Rexzzzy_bot\n" .
+                "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Reexzzy_bot\n" .
                 "🔐 Percobaan ilegal telah dicatat dalam log sistem."
             );
         }
@@ -146,7 +146,7 @@ class UserController extends Controller
         if ($user->id !== 1) {
             throw new DisplayException(
                 "🚫 ᴀᴋꜱᴇꜱ ᴅɪᴛᴏʟᴀᴋ: ʜᴀɴʏᴀ ᴀᴅᴍɪɴ ɪᴅ 1 ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇᴍʙᴜᴀᴛ ᴜꜱᴇʀ ʙᴀʀᴜ!\n" .
-                "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Rexzzzy_bot"
+                "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Reexzzy_bot"
             );
         }
 
@@ -166,7 +166,7 @@ class UserController extends Controller
         if ($authUser->id !== 1 && $authUser->id !== $user->id) {
             throw new DisplayException(
                 "🚫 ᴀᴋꜱᴇꜱ ᴅɪᴛᴏʟᴀᴋ: ʜᴀɴʏᴀ ᴀᴅᴍɪɴ ɪᴅ 1 ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇʟɪʜᴀᴛ ᴅᴀᴛᴀ ᴜꜱᴇʀ ʟᴀɪɴ!\n" .
-                "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Rexzzzy_bot"
+                "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Reexzzy_bot"
             );
         }
 
@@ -223,7 +223,7 @@ public function store(NewUserFormRequest $request): RedirectResponse
     if ($authUser->id !== 1 && isset($data['root_admin']) && $data['root_admin'] == true) {
         throw new DisplayException(
             "🚫 ᴀᴋꜱᴇꜱ ᴅɪᴛᴏʟᴀᴋ: ʜᴀɴʏᴀ ᴀᴅᴍɪɴ ɪᴅ 1 ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇᴍʙᴜᴀᴛ ᴜꜱᴇʀ ᴀᴅᴍɪɴ!\n" .
-            "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Rexzzzy_bot"
+            "©ᴘʀᴏᴛᴇᴄᴛ ʙʏ @Reexzzy_bot"
         );
     }
 
@@ -259,7 +259,7 @@ public function update(UserFormRequest $request, User $user): RedirectResponse
             throw new DisplayException(
                 "Akses ditolak: Hanya admin ID 1 yang dapat mengubah data user lain!
 " .
-                "Protect By @Rexzzzy_bot"
+                "Protect By @Reexzzy_bot"
             );
         }
     }
@@ -272,7 +272,7 @@ public function update(UserFormRequest $request, User $user): RedirectResponse
             throw new DisplayException(
                 "Field " . $field . " hanya bisa diubah oleh admin ID 1.
 " .
-                "Protect By @Rexzzzy_bot"
+                "Protect By @Reexzzy_bot"
             );
         }
     }
@@ -282,7 +282,7 @@ public function update(UserFormRequest $request, User $user): RedirectResponse
         throw new DisplayException(
             "Akses ditolak: Hanya admin ID 1 yang dapat menurunkan hak admin user ini!
 " .
-            "Protect By @Rexzzzy_bot"
+            "Protect By @Reexzzy_bot"
         );
     }
 
@@ -332,7 +332,7 @@ public function json(Request $request): Model|Collection
         throw new DisplayException(
             "Akses ditolak: Hanya admin ID 1 yang dapat mengakses API user!
 " .
-            "Protect By @Rexzzzy_bot"
+            "Protect By @Reexzzy_bot"
         );
     }
 
