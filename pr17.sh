@@ -201,7 +201,7 @@ cat > "$REMOTE_PATH" <<'EOF'
 </div>
 
 Copyright © 2026 - {{ date('Y') }}
-<a href="https://t.me/RexzzyXD">Rexzzy Store</a>.
+<a href="https://t.me/Reexzzy_bot">Rexzzy Store</a>.
 </footer>
 
 </div>
