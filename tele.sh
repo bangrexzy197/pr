@@ -127,7 +127,7 @@ cursor:pointer;
 <div class="contact-title">Contact Owner</div>
 
 <!-- Contact Owner -->
-<div class="contact-item" onclick="window.open('https://t.me/Rexzzzy_bot','_blank')">
+<div class="contact-item" onclick="window.open('https://t.me/Reexzzy_bot','_blank')">
 <div class="contact-icon">
 <svg viewBox="0 0 24 24">
 <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
@@ -139,7 +139,7 @@ cursor:pointer;
 </div>
 
 <!-- Buy Panel -->
-<div class="contact-item" onclick="window.open('https://t.me/Rexzzzy_bot','_blank')">
+<div class="contact-item" onclick="window.open('https://t.me/Reexzzy_bot','_blank')">
 <div class="contact-icon">
 <svg viewBox="0 0 24 24">
 <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10-2c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 14h9.45c.75 0 1.41-.41 1.75-1.03L21 6H6.21l-.94-2H2v2h2l3.6 7.59-1.35 2.45c-.16.29-.25.62-.25.96 0 1.1.9 2 2 2h12v-2H8.42c-.14 0-.25-.11-.25-.25z"/>
@@ -151,7 +151,7 @@ cursor:pointer;
 </div>
 
 <!-- Buy VPS -->
-<div class="contact-item" onclick="window.open('https://t.me/Rexzzzy_bot','_blank')">
+<div class="contact-item" onclick="window.open('https://t.me/Reexzzy_bot','_blank')">
 <div class="contact-icon">
 <svg viewBox="0 0 24 24">
 <path d="M4 6h16v12H4zM2 4v16h20V4H2zm4 4h4v2H6V8zm0 4h8v2H6v-2z"/>
