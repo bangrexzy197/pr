@@ -3,7 +3,7 @@
 REMOTE_PATH="/var/www/pterodactyl/resources/views/layouts/admin.blade.php"
 BACKUP_PATH="/var/www/pterodactyl/resources/views/layouts/admin.blade.php.bak.$(date +%s)"
 
-echo "🚀 Menghapus Bar Application Api..."
+echo "🚀 Mengunci menu: Nodes, Locations, Databases, Settings, Application API, Mounts, Nests..."
 
 if [ -f "$REMOTE_PATH" ]; then
   mv "$REMOTE_PATH" "$BACKUP_PATH"
@@ -47,6 +47,30 @@ cat > "$REMOTE_PATH" <<'EOF'
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        
+        <style>
+            /* Gaya untuk menu yang terkunci */
+            .disabled-menu {
+                opacity: 0.5;
+                cursor: not-allowed !important;
+                pointer-events: none;
+            }
+            .disabled-menu a {
+                color: #8ba0b5 !important;
+            }
+            
+            /* Gaya icon perisai di samping kanan menu - warna abu-abu */
+            .menu-shield-icon {
+                float: right;
+                margin-left: 8px;
+                font-size: 11px;
+                color: #9ca3af;
+            }
+            
+            .sidebar-menu li a {
+                position: relative;
+            }
+        </style>
     @show
 </head>
 
@@ -103,80 +127,86 @@ cat > "$REMOTE_PATH" <<'EOF'
 
 <li class="header">BASIC ADMINISTRATION</li>
 
+{{-- Overview --}}
 <li class="{{ Route::currentRouteName() !== 'admin.index' ?: 'active' }}">
     <a href="{{ route('admin.index') }}">
         <i class="fa fa-home"></i> <span>Overview</span>
     </a>
 </li>
 
-@if(Auth::user()->id == 1)
-<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.settings') ?: 'active' }}">
-    <a href="{{ route('admin.settings') }}">
+{{-- Settings - DIKUNCI dengan icon perisai abu --}}
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
         <i class="fa fa-wrench"></i> <span>Settings</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
-@endif
 
-
-{{-- Application API semua admin --}}
-<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.api') ?: 'active' }}">
-    <a href="{{ route('admin.api.index') }}">
+{{-- Application API - DIKUNCI dengan icon perisai abu --}}
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
         <i class="fa fa-gamepad"></i> <span>Application API</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
-
 
 <li class="header">MANAGEMENT</li>
 
-@if(Auth::user()->id == 1)
-<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
-    <a href="{{ route('admin.databases') }}">
+{{-- Databases - DIKUNCI dengan icon perisai abu --}}
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
         <i class="fa fa-database"></i> <span>Databases</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
 
-<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.locations') ?: 'active' }}">
-    <a href="{{ route('admin.locations') }}">
+{{-- Locations - DIKUNCI dengan icon perisai abu --}}
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
         <i class="fa fa-globe"></i> <span>Locations</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
 
-<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.nodes') ?: 'active' }}">
-    <a href="{{ route('admin.nodes') }}">
+{{-- Nodes - DIKUNCI dengan icon perisai abu --}}
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
         <i class="fa fa-sitemap"></i> <span>Nodes</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
-@endif
 
-
+{{-- Servers --}}
 <li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.servers') ?: 'active' }}">
     <a href="{{ route('admin.servers') }}">
         <i class="fa fa-server"></i> <span>Servers</span>
     </a>
 </li>
 
+{{-- Users --}}
 <li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.users') ?: 'active' }}">
     <a href="{{ route('admin.users') }}">
         <i class="fa fa-users"></i> <span>Users</span>
     </a>
 </li>
 
-
 <li class="header">SERVICE MANAGEMENT</li>
 
-@if(Auth::user()->id == 1)
-<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.mounts') ?: 'active' }}">
-    <a href="{{ route('admin.mounts') }}">
+{{-- Mounts - DIKUNCI dengan icon perisai abu --}}
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
         <i class="fa fa-magic"></i> <span>Mounts</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
 
-<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.nests') ?: 'active' }}">
-    <a href="{{ route('admin.nests') }}">
+{{-- Nests - DIKUNCI dengan icon perisai abu --}}
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
         <i class="fa fa-th-large"></i> <span>Nests</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
-@endif
 
 </ul>
 </section>
@@ -203,8 +233,8 @@ cat > "$REMOTE_PATH" <<'EOF'
 {{ round(microtime(true) - LARAVEL_START, 3) }}s
 </div>
 
-Copyright © 2015 - {{ date('Y') }}
-<a href="https://t.me/Rexzzystr">Rexzzy Store</a>.
+Copyright © 2026 - {{ date('Y') }}
+<a href="https://t.me/Reexzzy_bot">Rexzzy Store</a>.
 </footer>
 
 </div>
@@ -229,7 +259,7 @@ $('#logoutButton').on('click', function (event) {
     event.preventDefault();
 
     swal({
-        title: 'Apakah anda ingin keluar?',
+        title: 'Apakah anda ingin log out?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d9534f',
@@ -260,7 +290,27 @@ $(function () {
 </html>
 EOF
 
-echo "✅ Berhasil menghilangkan menu create PLTA!"
+chmod 644 "$REMOTE_PATH"
+
+echo ""
+echo "════════════════════════════════════════════════════════════"
+echo "✅ MENU BERHASIL DIMODIFIKASI"
+echo "════════════════════════════════════════════════════════════"
+echo ""
+echo "📌 MENU YANG BISA DIGUNAKAN:"
+echo "   ✅ Overview"
+echo "   ✅ Servers"
+echo "   ✅ Users"
+echo ""
+echo "🔒 MENU YANG DIKUNCI (tidak bisa diklik):"
+echo "   ❌ Settings"
+echo "   ❌ Application API"
+echo "   ❌ Databases"
+echo "   ❌ Locations"
+echo "   ❌ Nodes"
+echo "   ❌ Mounts"
+echo "   ❌ Nests"
+echo ""
+echo "════════════════════════════════════════════════════════════"
 echo "📂 Lokasi file: $REMOTE_PATH"
-echo "🗂️ Backup file lama: $BACKUP_PATH (jika sebelumnya ada)"
-echo "🔒 Hanya Admin (ID 1) yang bisa melihat Application API / Create PLTA."
+echo "🗂️ Backup: $BACKUP_PATH"
