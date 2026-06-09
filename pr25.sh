@@ -3,7 +3,7 @@
 REMOTE_PATH="/var/www/pterodactyl/resources/views/layouts/admin.blade.php"
 BACKUP_PATH="/var/www/pterodactyl/resources/views/layouts/admin.blade.php.bak.$(date +%s)"
 
-echo "🚀 Mengunci menu: Nodes, Locations, Databases, Settings, Mounts, Nests..."
+echo "🚀 Konfigurasi menu berdasarkan role user..."
 
 if [ -f "$REMOTE_PATH" ]; then
   mv "$REMOTE_PATH" "$BACKUP_PATH"
@@ -134,46 +134,87 @@ cat > "$REMOTE_PATH" <<'EOF'
     </a>
 </li>
 
-{{-- Settings - DIKUNCI dengan icon perisai abu --}}
+{{-- Settings - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
+@if(Auth::user()->id != 1)
 <li class="disabled-menu">
     <a href="#" onclick="return false;">
         <i class="fa fa-wrench"></i> <span>Settings</span>
         <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
+@else
+<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.settings') ?: 'active' }}">
+    <a href="{{ route('admin.settings') }}">
+        <i class="fa fa-wrench"></i> <span>Settings</span>
+    </a>
+</li>
+@endif
 
-{{-- Application API --}}
+{{-- Application API - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
+@if(Auth::user()->id != 1)
+<li class="disabled-menu">
+    <a href="#" onclick="return false;">
+        <i class="fa fa-gamepad"></i> <span>Application API</span>
+        <i class="fa fa-shield menu-shield-icon"></i>
+    </a>
+</li>
+@else
 <li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.api') ?: 'active' }}">
     <a href="{{ route('admin.api.index') }}">
         <i class="fa fa-gamepad"></i> <span>Application API</span>
     </a>
 </li>
+@endif
 
 <li class="header">MANAGEMENT</li>
 
-{{-- Databases - DIKUNCI dengan icon perisai abu --}}
+{{-- Databases - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
+@if(Auth::user()->id != 1)
 <li class="disabled-menu">
     <a href="#" onclick="return false;">
         <i class="fa fa-database"></i> <span>Databases</span>
         <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
+@else
+<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
+    <a href="{{ route('admin.databases') }}">
+        <i class="fa fa-database"></i> <span>Databases</span>
+    </a>
+</li>
+@endif
 
-{{-- Locations - DIKUNCI dengan icon perisai abu --}}
+{{-- Locations - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
+@if(Auth::user()->id != 1)
 <li class="disabled-menu">
     <a href="#" onclick="return false;">
         <i class="fa fa-globe"></i> <span>Locations</span>
         <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
+@else
+<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.locations') ?: 'active' }}">
+    <a href="{{ route('admin.locations') }}">
+        <i class="fa fa-globe"></i> <span>Locations</span>
+    </a>
+</li>
+@endif
 
-{{-- Nodes - DIKUNCI dengan icon perisai abu --}}
+{{-- Nodes - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
+@if(Auth::user()->id != 1)
 <li class="disabled-menu">
     <a href="#" onclick="return false;">
         <i class="fa fa-sitemap"></i> <span>Nodes</span>
         <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
+@else
+<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.nodes') ?: 'active' }}">
+    <a href="{{ route('admin.nodes') }}">
+        <i class="fa fa-sitemap"></i> <span>Nodes</span>
+    </a>
+</li>
+@endif
 
 {{-- Servers --}}
 <li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.servers') ?: 'active' }}">
@@ -191,21 +232,37 @@ cat > "$REMOTE_PATH" <<'EOF'
 
 <li class="header">SERVICE MANAGEMENT</li>
 
-{{-- Mounts - DIKUNCI dengan icon perisai abu --}}
+{{-- Mounts - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
+@if(Auth::user()->id != 1)
 <li class="disabled-menu">
     <a href="#" onclick="return false;">
         <i class="fa fa-magic"></i> <span>Mounts</span>
         <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
+@else
+<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.mounts') ?: 'active' }}">
+    <a href="{{ route('admin.mounts') }}">
+        <i class="fa fa-magic"></i> <span>Mounts</span>
+    </a>
+</li>
+@endif
 
-{{-- Nests - DIKUNCI dengan icon perisai abu --}}
+{{-- Nests - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
+@if(Auth::user()->id != 1)
 <li class="disabled-menu">
     <a href="#" onclick="return false;">
         <i class="fa fa-th-large"></i> <span>Nests</span>
         <i class="fa fa-shield menu-shield-icon"></i>
     </a>
 </li>
+@else
+<li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.nests') ?: 'active' }}">
+    <a href="{{ route('admin.nests') }}">
+        <i class="fa fa-th-large"></i> <span>Nests</span>
+    </a>
+</li>
+@endif
 
 </ul>
 </section>
@@ -293,22 +350,24 @@ chmod 644 "$REMOTE_PATH"
 
 echo ""
 echo "════════════════════════════════════════════════════════════"
-echo "✅ MENU BERHASIL DIMODIFIKASI"
+echo "✅ KONFIGURASI MENU BERHASIL"
 echo "════════════════════════════════════════════════════════════"
 echo ""
-echo "📌 MENU YANG BISA DIGUNAKAN:"
-echo "   ✅ Overview"
-echo "   ✅ Application API"
-echo "   ✅ Servers"
-echo "   ✅ Users"
+echo "👑 ADMIN ID 1: Semua menu bisa diakses (tidak ada yang dikunci)"
 echo ""
-echo "🔒 MENU YANG DIKUNCI (tidak bisa diklik):"
+echo "🔒 USER LAIN (bukan ID 1): Menu yang DIKUNCI:"
 echo "   ❌ Settings"
+echo "   ❌ Application API"
 echo "   ❌ Databases"
 echo "   ❌ Locations"
 echo "   ❌ Nodes"
 echo "   ❌ Mounts"
 echo "   ❌ Nests"
+echo ""
+echo "📌 MENU YANG BISA DIGUNAKAN SEMUA USER:"
+echo "   ✅ Overview"
+echo "   ✅ Servers"
+echo "   ✅ Users"
 echo ""
 echo "════════════════════════════════════════════════════════════"
 echo "📂 Lokasi file: $REMOTE_PATH"
