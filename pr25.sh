@@ -150,21 +150,12 @@ cat > "$REMOTE_PATH" <<'EOF'
 </li>
 @endif
 
-{{-- Application API - HANYA DIKUNCI JIKA BUKAN ADMIN ID 1 --}}
-@if(Auth::user()->id != 1)
-<li class="disabled-menu">
-    <a href="#" onclick="return false;">
-        <i class="fa fa-gamepad"></i> <span>Application API</span>
-        <i class="fa fa-shield menu-shield-icon"></i>
-    </a>
-</li>
-@else
+{{-- Application API - TIDAK DIKUNCI (bisa diakses semua admin) --}}
 <li class="{{ ! str_starts_with(Route::currentRouteName(), 'admin.api') ?: 'active' }}">
     <a href="{{ route('admin.api.index') }}">
         <i class="fa fa-gamepad"></i> <span>Application API</span>
     </a>
 </li>
-@endif
 
 <li class="header">MANAGEMENT</li>
 
@@ -357,7 +348,6 @@ echo "👑 ADMIN ID 1: Semua menu bisa diakses (tidak ada yang dikunci)"
 echo ""
 echo "🔒 USER LAIN (bukan ID 1): Menu yang DIKUNCI:"
 echo "   ❌ Settings"
-echo "   ❌ Application API"
 echo "   ❌ Databases"
 echo "   ❌ Locations"
 echo "   ❌ Nodes"
@@ -366,6 +356,7 @@ echo "   ❌ Nests"
 echo ""
 echo "📌 MENU YANG BISA DIGUNAKAN SEMUA USER:"
 echo "   ✅ Overview"
+echo "   ✅ Application API (TIDAK DIKUNCI)"
 echo "   ✅ Servers"
 echo "   ✅ Users"
 echo ""
